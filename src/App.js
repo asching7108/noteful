@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link, NavLink } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import './App.css';
 import MainPageMain from './MainPageMain/MainPageMain';
 import NotePageMain from './NotePageMain/NotePageMain';
@@ -9,8 +9,15 @@ import DATA from './data';
 
 class App extends Component {
   state = {
-    folders: DATA.folders,
-    notes: DATA.notes
+    folders: [],
+    notes: []
+  }
+
+  componentDidMount() {
+    this.setState ({
+      folders: DATA.folders,
+      notes: DATA.notes
+    })
   }
 
 	render() {
@@ -33,7 +40,7 @@ class App extends Component {
               path='/folder/:folderId'
               render={(routerProps) => 
                 <MainPageSidebar
-                  folders={[folders.find(f => f.id === routerProps.match.params.folderId)]}
+                  folders={folders}
                 />}
             />
             <Route

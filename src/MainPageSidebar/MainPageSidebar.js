@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 class MainPageSidebar extends Component {
 	render() {
@@ -9,7 +9,14 @@ class MainPageSidebar extends Component {
 				<ul className='folderList'>
 					{folders.map(folder => 
 						<li className="folder" key={folder.id}>
-							<Link to={`/folder/${folder.id}`}>{folder.name}</Link>
+							<NavLink 
+								to={`/folder/${folder.id}`}
+								activeStyle={{
+									background: 'yellow'
+								}}
+							>
+								{folder.name}
+							</NavLink>
 						</li>
 					)}
 				</ul>
