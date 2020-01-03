@@ -10,6 +10,13 @@ header {
     border-bottom: 1px solid #AAAAAA;
 }
 
+nav {
+    display: inline-block;
+    width: 25vw;
+    vertical-align: top;
+}
+
 main {
-    display: flex;
+    display: inline-block;
+    width: 75vw;
 }
