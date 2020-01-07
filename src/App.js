@@ -5,6 +5,9 @@ import MainPageMain from './MainPageMain/MainPageMain';
 import NotePageMain from './NotePageMain/NotePageMain';
 import MainPageSidebar from './MainPageSidebar/MainPageSidebar';
 import NotePageSidebar from './NotePageSidebar/NotePageSidebar';
+import AddFolder from './AddFolder/AddFolder';
+import AddNote from './AddNote/AddNote';
+import ErrorBoundry from './ErrorBoundry';
 import NoteContext from './NoteContext';
 import config from './config';
 import DATA from './data';
@@ -21,6 +24,18 @@ class App extends Component {
     )
     this.setState({
       notes: newNotes
+    })
+  }
+
+  addFolder = folder => {
+    this.setState({
+      folders: [ ...this.state.folders, folder ]
+    })
+  }
+
+  addNote = note => {
+    this.setState({
+      notes: [ ...this.state.notes, note ]
     })
   }
 
@@ -55,19 +70,21 @@ class App extends Component {
       notes: this.state.notes
     };
     return (
-      <NoteContext.Provider value={contextValue}>
-        <>
-          {['/', '/folder/:folderId'].map(path => 
-            <Route 
-              exact
-              key={path}
-              path={path}
-              component={MainPageSidebar}
-            />
-          )}
-          <Route path='/note/:noteId' component={NotePageSidebar} />
-        </>
-      </NoteContext.Provider>
+      <ErrorBoundry>
+        <NoteContext.Provider value={contextValue}>
+          <>
+            {['/', '/folder/:folderId'].map(path => 
+              <Route 
+                exact
+                key={path}
+                path={path}
+                component={MainPageSidebar}
+              />
+            )}
+            <Route path='/note/:noteId' component={NotePageSidebar} />
+          </>
+        </NoteContext.Provider>
+      </ErrorBoundry>
     );
   }
 
@@ -75,20 +92,31 @@ class App extends Component {
     const contextValue = {
       folders: this.state.folders,
       notes: this.state.notes,
-      deleteNote: this.deleteNote
+      deleteNote: this.deleteNote,
+      addFolder: this.addFolder,
+      addNote: this.addNote
     };
     return (
       <NoteContext.Provider value={contextValue}>
         <>
           {['/', '/folder/:folderId'].map(path => 
-            <Route 
-              exact
-              key={path}
-              path={path}
-              component={MainPageMain}
-            />
+            <ErrorBoundry key={path}>
+              <Route 
+                exact
+                path={path}
+                component={MainPageMain}
+              />
+            </ErrorBoundry>
           )}
-          <Route path='/note/:noteId' component={NotePageMain} />
+          <ErrorBoundry>
+            <Route path='/note/:noteId' component={NotePageMain} />
+          </ErrorBoundry>
+          <ErrorBoundry>
+            <Route path='/add-folder' component={AddFolder} />
+          </ErrorBoundry>
+          <ErrorBoundry>
+            <Route path='/add-note' component={AddNote} />
+          </ErrorBoundry>
         </>
       </NoteContext.Provider>
     );

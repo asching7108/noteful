@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NoteContext from '../NoteContext';
 import config from '../config';
+import './NotePageMain.css';
 
 class NotePageMain extends Component {
 	static contextType = NoteContext;
@@ -29,9 +30,7 @@ class NotePageMain extends Component {
 
 	render() {
 		const { notes, deleteNote } = this.context;
-		const note = notes.find(n => 
-			n.id === this.props.match.params.noteId
-		);
+		const note = notes.find(n => n.id === this.props.match.params.noteId);
 		return (
 			<>
 				<div className="note">
@@ -42,10 +41,11 @@ class NotePageMain extends Component {
 					{note.content}
 				</div>
 				<button 
+					className="btn deleteBtn"
 					type="button" 
 					onClick={() => this.deleteNote(note.id, deleteNote)}
 				>
-					delete
+					Delete Note
 				</button>
       </>
 		);

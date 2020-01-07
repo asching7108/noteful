@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import NoteContext from '../NoteContext';
+import './MainPageSidebar.css';
 
 class MainPageSidebar extends Component {
 	static contextType = NoteContext;
@@ -8,10 +9,10 @@ class MainPageSidebar extends Component {
 	render() {
 		const { folders } = this.context;
 		return (
-			<>
-				<ul className='folderList'>
+			<div className="navBox">
+				<div className='folderList'>
 					{folders.map(folder => 
-						<li className="folder" key={folder.id}>
+						<div className="btn folder" key={folder.id}>
 							<NavLink 
 								to={`/folder/${folder.id}`}
 								activeStyle={{
@@ -20,10 +21,11 @@ class MainPageSidebar extends Component {
 							>
 								{folder.name}
 							</NavLink>
-						</li>
+						</div>
 					)}
-				</ul>
-      </>
+				</div>
+				<Link to={'/add-folder'} className="btn addFolderBtn">Add Folder</Link>
+      </div>
 		);
 	}
 }

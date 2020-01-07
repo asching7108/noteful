@@ -1,0 +1,12 @@
+.navBox {
+    width: 20vw;
+    text-align: center;
+}
+
+.folder {
+    margin: 10px auto;
+}
+
+.addFolderBtn {
+    margin: 40px auto;
+}
