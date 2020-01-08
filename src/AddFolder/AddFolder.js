@@ -77,7 +77,11 @@ class AddFolder extends Component {
 				<form onSubmit={this.handleSubmit}>
 					<div className="formLine">
 						<label htmlFor='name'>Folder name: <Required /></label>
-						<input type='text' name='name' id='name' required 
+						<input 
+							type='text' 
+							name='name' 
+							id='name' 
+							aria-required="true"
 							onChange={e => this.updateName(e.target.value)} />
 						{this.state.name.touched && <ValidationError message={nameError} />}
 					</div>

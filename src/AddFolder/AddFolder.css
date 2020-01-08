@@ -31,4 +31,5 @@
 .btn:disabled {
     border: 1px solid lightgrey;
     color: lightgrey;
+    cursor: default;
 }

@@ -104,13 +104,20 @@ class AddNote extends Component {
 				<form onSubmit={this.handleSubmit}>
 					<div className="formLine">
 						<label htmlFor='name'>Note name: <Required /></label>
-						<input type='text' name='name' id='name' required 
+						<input 
+							type='text' 
+							name='name' 
+							id='name' 
+							aria-required="true"
 							onChange={e => this.updateName(e.target.value)} />
 						{this.state.name.touched && <ValidationError message={nameError}/>}
 					</div>
 					<div className="formLine">
 						<label htmlFor='folder'>Folder: <Required /></label>
-						<select name='folder' id='folder'
+						<select 
+							name='folder' 
+							id='folder' 
+							aria-required="true"
 							onChange={e => this.updateFolder(e.target.value)}>
 							<option value='0'>Select a folder</option>
 							{folders.map(f => 
@@ -121,7 +128,9 @@ class AddNote extends Component {
 					</div>
 					<div className="formLine">
 						<label htmlFor='content'>Note content: </label>
-						<textarea name='content' id='content'
+						<textarea 
+							name='content' 
+							id='content'
 							onChange={e => this.updateContent(e.target.value)} />
 					</div>
 					<div className="formLine">
