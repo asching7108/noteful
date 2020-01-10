@@ -6,6 +6,11 @@ import './NotePageMain.css';
 class NotePageMain extends Component {
 	static contextType = NoteContext;
 
+	getDate(dateStr) {
+		const date = new Date(dateStr);
+		return date.toLocaleString('en-US', { dateStyle: 'medium' });
+	}
+
 	deleteNote(noteId, cb) {
 		fetch(`${config.API_URL}/notes/${noteId}`, {
 			method: 'DELETE',
@@ -35,7 +40,7 @@ class NotePageMain extends Component {
 			<>
 				<div className="note">
 					<h2>{note.name}</h2>
-					<span>Data modified on {note.modified}</span>
+					<span>Data modified on {this.getDate(note.modified)}</span>
 				</div>
 				<div className="noteContent">
 					{note.content}

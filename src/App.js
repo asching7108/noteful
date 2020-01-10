@@ -112,7 +112,13 @@ class App extends Component {
             <Route path='/note/:noteId' component={NotePageMain} />
           </ErrorBoundry>
           <ErrorBoundry>
-            <Route path='/add-folder' component={AddFolder} />
+            <Route 
+              path='/add-folder' 
+              // practice propTypes
+              render={routeProps => 
+                <AddFolder {...routeProps} folders={this.state.folders} />}
+              // component={AddFolder} 
+            />
           </ErrorBoundry>
           <ErrorBoundry>
             <Route path='/add-note' component={AddNote} />

@@ -3,6 +3,7 @@ import NoteContext from '../NoteContext';
 import config from '../config';
 import ValidationError from '../ValidationError';
 import './AddFolder.css';
+import PropTypes from 'prop-types';
 
 const Required = () => (
 	<span className="requiredMark">*</span>
@@ -64,7 +65,7 @@ class AddFolder extends Component {
 		if (name.length === 0) {
 			return 'Name is required';
 		}
-		if (this.context.folders.find(f => f.name === name)) {
+		if (this.props.folders.find(f => f.name === name)) {
 			return 'Name of folder already exists';
 		}
 	}
@@ -96,6 +97,10 @@ class AddFolder extends Component {
 			</section>
     );
   }
+}
+
+AddFolder.propTypes = {
+	folders: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
 export default AddFolder;
