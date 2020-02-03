@@ -48,10 +48,10 @@ class AddNote extends Component {
 		e.preventDefault();
 		const { name, folder, content } = this.state;
 		const note = {
-			name: name.value,
-			folderId: folder.value,
+			note_name: name.value,
+			folder_id: folder.value,
 			content: content.value,
-			modified: new Date().toISOString()
+			date_modified: new Date().toISOString()
 		}
 		fetch(`${config.API_URL}/notes`, {
 			method: 'POST',
@@ -121,7 +121,7 @@ class AddNote extends Component {
 							onChange={e => this.updateFolder(e.target.value)}>
 							<option value='0'>Select a folder</option>
 							{folders.map(f => 
-								<option key={f.id} value={f.id}>{f.name}</option>
+								<option key={f.id} value={f.id}>{f.folder_name}</option>
 							)}
 						</select>
 						{this.state.folder.touched && <ValidationError message={folderError}/>}

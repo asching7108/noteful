@@ -22,7 +22,6 @@ class NotePageMain extends Component {
 				if (!res.ok) {
 					return res.json().then(e => Promise.reject(e))
 				}
-				return res.json();
 			})
 			.then(() => {
 				this.props.history.push('/');
@@ -35,12 +34,12 @@ class NotePageMain extends Component {
 
 	render() {
 		const { notes, deleteNote } = this.context;
-		const note = notes.find(n => n.id === this.props.match.params.noteId);
+		const note = notes.find(n => n.id === Number(this.props.match.params.noteId));
 		return (
 			<>
 				<div className="note">
-					<h2>{note.name}</h2>
-					<span>Data modified on {this.getDate(note.modified)}</span>
+					<h2>{note.note_name}</h2>
+					<span>Data modified on {this.getDate(note.date_modified)}</span>
 				</div>
 				<div className="noteContent">
 					{note.content}

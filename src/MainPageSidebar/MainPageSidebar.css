@@ -3,6 +3,11 @@
     text-align: center;
 }
 
+.folderList {
+    display: flex;
+    flex-direction: column;
+}
+
 .folder {
     margin: 10px auto;
 }

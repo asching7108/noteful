@@ -23,7 +23,6 @@ class MainPageMain extends Component {
 				if (!res.ok) {
 					return res.json().then(e => Promise.reject(e))
 				}
-				return res.json();
 			})
 			.then(() => {
 				cb(noteId);
@@ -35,9 +34,9 @@ class MainPageMain extends Component {
 
 	render() {
 		const { notes, deleteNote } = this.context;
-		const folderId = this.props.match.params.folderId;
+		const folderId = Number(this.props.match.params.folderId);
 		const notesToDisplay = folderId
-			? notes.filter(n => n.folderId === folderId)
+			? notes.filter(n => n.folder_id === folderId)
 			: notes;
 		return (
 			<NoteContext.Consumer>
@@ -48,8 +47,8 @@ class MainPageMain extends Component {
 						</div>
 						{notesToDisplay.map(note => 
 							<div className="note" key={note.id}>
-								<h2><Link to={`/note/${note.id}`}>{note.name}</Link></h2>
-								<span>Data modified on {this.getDate(note.modified)}</span>
+								<h2><Link to={`/note/${note.id}`}>{note.note_name}</Link></h2>
+								<span>Data modified on {this.getDate(note.date_modified)}</span>
 								<button 
 									className="btn deleteBtn"
 									type="button" 

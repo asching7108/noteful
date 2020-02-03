@@ -34,7 +34,7 @@ class AddFolder extends Component {
 		e.preventDefault();
 		const { name } = this.state;
 		const folder = {
-			name: name.value
+			folder_name: name.value
 		}
 		fetch(`${config.API_URL}/folders`, {
 			method: 'POST',
@@ -65,7 +65,7 @@ class AddFolder extends Component {
 		if (name.length === 0) {
 			return 'Name is required';
 		}
-		if (this.props.folders.find(f => f.name === name)) {
+		if (this.props.folders.find(f => f.folder_name === name)) {
 			return 'Name of folder already exists';
 		}
 	}

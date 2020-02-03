@@ -19,7 +19,7 @@ class MainPageSidebar extends Component {
 									background: 'yellow'
 								}}
 							>
-								{folder.name}
+								{folder.folder_name}
 							</NavLink>
 						</div>
 					)}

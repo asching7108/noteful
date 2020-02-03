@@ -7,11 +7,11 @@ class NotePageSidebar extends Component {
 
 	render() {
 		const { notes, folders }= this.context;
-		const note = notes.find(n => n.id === this.props.match.params.noteId);
-		const folder = folders.find(f => f.id === note.folderId);
+		const note = notes.find(n => n.id === Number(this.props.match.params.noteId));
+		const folder = folders.find(f => f.id === note.folder_id);
 		return (
 			<div className="navBox">
-				<h2 className="folderName">{folder.name}</h2>
+				<h2 className="folderName">{folder.folder_name}</h2>
         <button type='button' className="btn returnBtn" onClick={() => this.props.history.goBack()}>
 					Go Back
 				</button>
